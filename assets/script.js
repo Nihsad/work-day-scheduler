@@ -1,25 +1,26 @@
+// Wait for the document to be fully loaded before executing the script
 $(document).ready(function () {
-  // get the current date
+  // Get the current date using the dayjs library
   var currentDate = dayjs().format("dddd, MMMM DD");
 
-  // set the value of the #currentDay div to the current date
+  // Set the current date in the #currentDay div
   $("#currentDay").text(currentDate);
 
-  // container for time blocks
+  // Container for time blocks
   var timeBlocksContainer = $(".container-lg");
 
-  // generate hour blocks dynamically
+  // Generate hour blocks dynamically from 9 AM to 5 PM
   for (var hour = 9; hour <= 17; hour++) {
-    // create a unique id for each time block
+    // Create a unique id for each time block
     var timeBlockId = "hour-" + hour;
 
-    // determine AM or PM
+    // Determine whether it's AM or PM
     var amPm = hour < 12 ? "AM" : "PM";
 
-    // convert to 12-hour format
+    // Convert to 12-hour format
     var displayHour = hour <= 12 ? hour : hour - 12;
 
-    // create the HTML structure for the time block
+    // Create the HTML structure for the time block
     var timeBlockHtml =
       '<div id="' +
       timeBlockId +
@@ -34,31 +35,34 @@ $(document).ready(function () {
       '</button>' +
       '</div>';
 
-    // append the time block to the container
+    // Append the time block to the container
     timeBlocksContainer.append(timeBlockHtml);
   }
 
-  // save button click listener
+  // Save button click listener
   $(".container").on("click", ".saveBtn", function () {
-    // get the id of the timeblock containing the button that was clicked
+    // Get the id of the time block containing the clicked button
     var timeBlockId = $(this).parent().attr("id");
-    // get the user input from the textarea
+
+    // Get the user input from the textarea
     var userInput = $(this).siblings(".description").val();
-    // save the user input in local storage using the id as the key
+
+    // Save the user input in local storage using the id as the key
     localStorage.setItem(timeBlockId, userInput);
   });
 
-  // get the current hour
+  // Get the current hour using dayjs
   var currentHour = dayjs().hour();
 
-  // loop through each time block
+  // Loop through each time block to apply styling based on the current hour
   $(".time-block").each(function () {
-    // get the id of the timeblock
+    // Get the id of the time block
     var timeBlockId = $(this).attr("id");
-    // get the hour from the id (e.g. "hour-9" -> 9)
+
+    // Get the hour from the id (e.g., "hour-9" -> 9)
     var timeBlockHour = parseInt(timeBlockId.split("hour-")[1]);
 
-    // determine if the time block is in the past, present, or future
+    // Determine if the time block is in the past, present, or future
     if (timeBlockHour < currentHour) {
       $(this).addClass("past");
     } else if (timeBlockHour === currentHour) {
@@ -68,7 +72,7 @@ $(document).ready(function () {
     }
   });
 
-  // on page load, set the values of the textarea elements with any user input that was saved in localStorage
+  // On page load, set the values of the textarea elements with any user input saved in localStorage
   $(".description").each(function () {
     var timeBlockId = $(this).closest(".time-block").attr("id");
     $(this).val(localStorage.getItem(timeBlockId));
