@@ -1,14 +1,29 @@
-body {
-  font-family: 'Open Sans', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime&family=Gilda+Display&family=Palanquin:wght@400;700&&family=Palanquin+Dark&display=swap');
+
+:root {
+  --bg: rgb(68,48,48);
+  --text1: rgb(163,66,60);
+  --text2: rgb(231,227,238);
+  --grad-1: rgb(163,66,60);
+  --grad-2: rgb(222,131,77);
+  --grad-3: rgba(240,210,144,1);
+  --green: rgb(109, 184, 119);
+  --drop-shadow: rgba(68,48,48, 0.7);
+}
+
+  body {
+  font-family: 'Palanquin Dark', sans-serif;
   font-size: 16px;
+  background-color: var(--bg);
+  color: var(--text1);
 }
 
 textarea {
   background: transparent;
   border: none;
   resize: none;
-  color: #000000;
-  border-left: 1px solid black;
+  color: var(--bg);
+  border-left: 1px solid var(--bg);
   padding: 10px;
 }
 
@@ -21,27 +36,27 @@ textarea {
 }
 
 .row {
-  border-top: 1px solid white;
+  border-top: 1px solid var(--text2);
 }
 
 .hour {
-  background-color: #ffffff;
-  color: #000000;
-  border-top: 1px dashed #000000;
+  background-color: var(--bg);
+  color: var(--text1);
+  border-top: 1px dashed var(--text2);
 }
 
 .past {
-  background-color: #d3d3d3;
+  background-color: var(--text2);
   color: white;
 }
 
 .present {
-  background-color: #ff6961;
+  background-color: var(--grad-2);
   color: white;
 }
 
 .future {
-  background-color: #77dd77;
+  background-color: var(--green);
   color: white;
 }
 
