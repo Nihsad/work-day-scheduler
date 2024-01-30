@@ -40,7 +40,7 @@ $(document).ready(function () {
   }
 
   // Save button click listener
-  $(".container").on("click", ".saveBtn", function () {
+  $(".container-lg").on("click", ".saveBtn", function () {
     // Get the id of the time block containing the clicked button
     var timeBlockId = $(this).parent().attr("id");
 
