@@ -47,6 +47,10 @@ $(document).ready(function () {
     // Get the user input from the textarea
     var userInput = $(this).siblings(".description").val();
 
+    console.log("Clicked save button");
+    console.log("timeBlockId:", timeBlockId);
+    console.log("userInput:", userInput);
+
     // Save the user input in local storage using the id as the key
     localStorage.setItem(timeBlockId, userInput);
   });
