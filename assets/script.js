@@ -75,6 +75,9 @@ $(document).ready(function () {
   // On page load, set the values of the textarea elements with any user input saved in localStorage
   $(".description").each(function () {
     var timeBlockId = $(this).closest(".time-block").attr("id");
-    $(this).val(localStorage.getItem(timeBlockId));
-  });
+    if (timeBlockId) {
+        $(this).val(localStorage.getItem(timeBlockId));
+    }
+});
+
 });
